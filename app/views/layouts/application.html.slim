@@ -5,15 +5,14 @@ html
     = csrf_meta_tags
     = csp_meta_tag
 
-    = stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload"
-    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
-    = Sentry.get_trace_propagation_meta.html_safe
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
 
   body
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mb-4
       .container
-        = link_to "BulletinBoard", root_path, class: "navbar-brand"
+        = link_to 'BulletinBoard', root_path, class: 'navbar-brand'
 
     .container
-      = render "shared/flash"
+      = render 'shared/flash'
       = yield
