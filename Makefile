@@ -1,5 +1,5 @@
 PORT?=3000
-RACK_ENV?=development
+RAILS_ENV?=production
 
 render-build:
 	bundle install
@@ -8,7 +8,7 @@ render-build:
 	bundle exec rails db:migrate
 
 render-start:
-	bundle exec puma -t 5:5 -p ${PORT} -e ${RACK_ENV}
+	bundle exec puma -t 5:5 -p ${PORT} -e ${RAILS_ENV}
 
 start:
 	rm -rf tmp/pids/server.pid || true

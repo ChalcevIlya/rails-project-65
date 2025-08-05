@@ -1,0 +1,4 @@
+- flash.each do |key, message|
+  .alert.alert-dismissible.fade.show class="alert-#{key == 'notice' ? 'success' : 'danger'}" role="alert"
+    = message
+    button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"
