@@ -1,5 +1,5 @@
-PORT?=3000
-RAILS_ENV?=production
+init_env:
+	cp -n .env.example .env
 
 render-build:
 	bundle install

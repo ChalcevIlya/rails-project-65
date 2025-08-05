@@ -12,6 +12,12 @@ html
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mb-4
       .container
         = link_to 'BulletinBoard', root_path, class: 'navbar-brand'
+        - if session[:user_id]
+          - user = User.find_by(id: session[:user_id])
+          span.text-white Hello, #{user.name}!
+          = button_to 'Logout', logout_path, method: :delete, class: 'btn btn-outline-light', data: { turbo: false }
+        - else
+          = button_to 'Login through GitHub', auth_request_path(:github), method: :post, class: 'btn btn-outline-light', data: { turbo: false }
 
     .container
       = render 'shared/flash'

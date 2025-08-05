@@ -19,6 +19,8 @@ gem 'cssbundling-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'simple_form'
@@ -49,6 +51,7 @@ group :development, :test do
   gem 'brakeman', require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  gem 'dotenv-rails'
   gem 'faker'
   gem 'rubocop'
   gem 'rubocop-performance'

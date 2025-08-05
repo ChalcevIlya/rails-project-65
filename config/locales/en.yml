@@ -29,3 +29,5 @@
 
 en:
   hello: "Hello world"
+  notices:
+    logout: "Logout success"
