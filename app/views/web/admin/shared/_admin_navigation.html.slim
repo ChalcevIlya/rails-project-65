@@ -1,0 +1,4 @@
+.col-md-2.nav.flex-column.nav-pills
+  li.nav-item = link_to t('navigation.under_moderation'), admin_root_path, rel: 'nofollow', class: "nav-link link-dark #{'active' if request.path == admin_root_path}"
+  li.nav-item = link_to t('navigation.all_bulletins'), admin_bulletins_path, rel: 'nofollow', class: "nav-link link-dark #{'active' if request.path == admin_bulletins_path}"
+  li.nav-item = link_to t('navigation.all_categories'), admin_categories_path, rel: 'nofollow', class: "nav-link link-dark #{'active' if request.path == admin_categories_path}"

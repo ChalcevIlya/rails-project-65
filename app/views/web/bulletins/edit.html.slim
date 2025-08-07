@@ -1,0 +1,5 @@
+h1.mb-3 = t('bulletins.edit')
+- if @bulletin.image.attached?
+  p = t('bulletins.current_image')
+  = image_tag @bulletin.image.variant(resize_to_fill: [600, 300])
+= render 'form'

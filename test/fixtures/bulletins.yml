@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: <%= Faker::Music.band %>
+  description: <%= Faker::Music.album %>
+  category: one
+  user: one
+
+two:
+  title: <%= Faker::Book.title %>
+  description: <%= Faker::Book.genre %>
+  category: two
+  user: two

@@ -1,0 +1,21 @@
+.container.mt-4
+  .card.p-3
+    h1.card-title.mb-2 = @bulletin.title
+    hr.my-2
+
+    - if @bulletin.image.attached?
+      = image_tag @bulletin.image.variant(resize_to_limit: [600, 300]).processed,
+        class: 'card-img mb-3', alt: @bulletin.title,
+        style: 'object-fit: cover; width: 100%; max-width: 600px; height: 300px;'
+
+    p.text-muted.mb-1
+      = "#{t('bulletins.category')}: "
+      = @bulletin.category.name
+      = " • #{t('bulletins.author')}: "
+      = @bulletin.user.name
+      = " • #{t('tables.created')}: "
+      = t('tables.time_ago', time: time_ago_in_words(@bulletin.created_at))
+
+    hr
+
+    p.card-text.white-space-pre-line = @bulletin.description

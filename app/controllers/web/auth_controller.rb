@@ -10,11 +10,11 @@ class Web::AuthController < ApplicationController
     user.save!
 
     session[:user_id] = user.id
-    redirect_to root_path, notice: "Hello, #{user.name}!"
+    redirect_to root_path, notice: I18n.t('auth.login', name: user.name)
   end
 
   def logout
     session.delete(:user_id)
-    redirect_to root_path, notice: I18n.t('notices.logout')
+    redirect_to root_path, notice: I18n.t('auth.logout')
   end
 end

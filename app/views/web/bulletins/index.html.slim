@@ -1,0 +1,21 @@
+.container
+  h1.mb-4 = t('bulletins.title')
+
+  = render 'search_form'
+
+  .row.row-cols-1.row-cols-md-2.row-cols-lg-3.g-4
+    - @bulletins.each do |bulletin|
+      .col
+        .card.h-100
+          - if bulletin.image.attached?
+            = link_to bulletin_path(bulletin) do
+              = image_tag bulletin.image.variant(resize_to_fill: [600, 400]).processed, class: 'card-img-top', alt: bulletin.title
+
+          .card-body.text-center
+            h5.card-title.mb-2
+              = link_to bulletin.title, bulletin_path(bulletin), class: 'text-decoration-none text-dark'
+
+            p.text-muted.mb-0
+              = t('tables.time_ago', time: time_ago_in_words(bulletin.created_at))
+  .mt-3
+    = paginate @bulletins

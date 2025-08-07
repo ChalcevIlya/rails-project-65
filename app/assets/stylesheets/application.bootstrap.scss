@@ -1,2 +1,11 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.white-space-pre-line {
+  white-space: pre-line;
+}
+
+label.required abbr {
+  color: red;
+  text-decoration: none;
+}

@@ -1,0 +1,32 @@
+.container
+  .row
+    = render 'web/admin/shared/admin_navigation'
+
+    .col-md-10
+        h1.mb-5 = t('bulletins.title')
+
+        = render 'web/bulletins/search_form'
+
+        .column
+          table.table-borderless.w-100
+            thead
+              tr
+                th = t('tables.title')
+                th = t('tables.state')
+                th = t('tables.created')
+                th = t('tables.actions')
+            tbody
+              - @bulletins.each do |bulletin|
+                tr
+                  td = link_to bulletin.title, bulletin_path(bulletin), class: 'link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover'
+                  td = bulletin.state
+                  td = t('tables.time_ago', time: time_ago_in_words(bulletin.created_at))
+                  td
+                    = link_to t('tables.show'), bulletin_path(bulletin), class: 'btn btn-sm btn-primary me-2'
+                    - if bulletin.may_archive?
+                      = link_to t('tables.archive'), archive_admin_bulletin_path(bulletin),
+                        data: { turbo_method: :patch, turbo_confirm: 'Cofirm archiving?' },
+                        class: 'btn btn-sm btn-danger me-2'
+
+          .mt-3
+            = paginate @bulletins

@@ -1,0 +1,33 @@
+.container
+  .row
+    = render 'web/admin/shared/admin_navigation'
+
+    .col-md-10
+        h1.mb-5 = t('navigation.under_moderation')
+
+        .column
+          table.table-borderless.w-100
+            thead
+              tr
+                th = t('tables.title')
+                th = t('tables.created')
+                th = t('tables.actions')
+            tbody
+              - @bulletins.each do |bulletin|
+                tr
+                  td = link_to bulletin.title, bulletin_path(bulletin),
+                    class: 'link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover'
+                  td = t('tables.time_ago', time: time_ago_in_words(bulletin.created_at))
+                  td
+                    = link_to t('tables.publish'), publish_admin_bulletin_path(bulletin),
+                      data: { turbo_method: :patch, turbo_confirm: 'Cofirm publishing?' },
+                      class: 'btn btn-sm btn-outline-success me-2'
+                    = link_to t('tables.reject'), reject_admin_bulletin_path(bulletin),
+                      data: { turbo_method: :patch, turbo_confirm: 'Cofirm rejecting?' },
+                      class: 'btn btn-sm btn-outline-danger me-2'
+                    = link_to t('tables.archive'), archive_admin_bulletin_path(bulletin),
+                      data: { turbo_method: :patch, turbo_confirm: 'Cofirm archiving?' },
+                      class: 'btn btn-sm btn-danger me-2'
+
+          .mt-3
+            = paginate @bulletins

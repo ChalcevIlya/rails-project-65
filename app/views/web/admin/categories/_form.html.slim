@@ -1,0 +1,6 @@
+= simple_form_for [:admin, @category], html: { class: 'mt-3' } do |f|
+  = f.input :name, required: true, label: t('forms.category_name')
+
+  .mt-3
+    = f.button :submit, class: 'btn btn-primary'
+    = link_to t('navigation.back'), admin_categories_path, class: 'btn btn-secondary ms-2'

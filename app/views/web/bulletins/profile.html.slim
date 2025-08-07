@@ -1,0 +1,34 @@
+.container
+    h2.mb-4.mt-4 = t('navigation.profile')
+    hr
+
+    = render 'search_form'
+
+    .column
+        table.table-borderless.w-100
+            thead
+                tr
+                    th = t('tables.title')
+                    th = t('tables.state')
+                    th = t('tables.created')
+                    th = t('tables.actions')
+            tbody
+              - @bulletins.each do |bulletin|
+                tr
+                  td = link_to bulletin.title, bulletin_path(bulletin), class: 'link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover'
+                  td = bulletin.state
+                  td = t('tables.time_ago', time: time_ago_in_words(bulletin.created_at))
+                  td
+                    = link_to t('tables.show'), bulletin_path(bulletin), class: 'btn btn-sm btn-outline-dark me-2 b-1'
+                    = link_to t('tables.edit'), edit_bulletin_path(bulletin), class: 'btn btn-sm btn-warning me-2'
+                    - if bulletin.may_send_to_moderation?
+                          = link_to t('tables.send_to_moderation'), send_to_moderation_bulletin_path(bulletin),
+                            data: { turbo_method: :patch, turbo_confirm: 'Cofirm sending to moderation?' },
+                            class: 'btn btn-sm btn-info me-2'
+                    - if bulletin.may_archive?
+                          = link_to t('tables.archive'), archive_bulletin_path(bulletin),
+                            data: { turbo_method: :patch, turbo_confirm: 'Cofirm archiving?' },
+                            class: 'btn btn-sm btn-danger me-2'
+
+        .mt-3.p-0
+          = paginate @bulletins
