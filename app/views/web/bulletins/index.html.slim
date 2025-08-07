@@ -9,7 +9,9 @@
         .card.h-100
           - if bulletin.image.attached?
             = link_to bulletin_path(bulletin) do
-              = image_tag bulletin.image.variant(resize_to_fill: [600, 400]).processed, class: 'card-img-top', alt: bulletin.title
+              = image_tag bulletin.image, class: 'card-img-top',
+                alt: bulletin.title,
+                style: 'object-fit: cover; width: 100%; max-width: 600px; height: 300px;'
 
           .card-body.text-center
             h5.card-title.mb-2

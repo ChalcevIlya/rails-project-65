@@ -4,7 +4,7 @@
     hr.my-2
 
     - if @bulletin.image.attached?
-      = image_tag @bulletin.image.variant(resize_to_limit: [600, 300]).processed,
+      = image_tag @bulletin.image,
         class: 'card-img mb-3', alt: @bulletin.title,
         style: 'object-fit: cover; width: 100%; max-width: 600px; height: 300px;'
 
