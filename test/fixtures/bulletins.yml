@@ -5,9 +5,11 @@ one:
   description: <%= Faker::Music.album %>
   category: one
   user: one
+  state: draft
 
 two:
   title: <%= Faker::Book.title %>
   description: <%= Faker::Book.genre %>
   category: two
   user: two
+  state: under_moderation

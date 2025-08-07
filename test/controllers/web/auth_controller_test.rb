@@ -9,7 +9,7 @@ class Web::AuthControllerTest < ActionDispatch::IntegrationTest
   test 'create' do
     auth_hash = {
       provider: 'github',
-      uid: '12345',
+      uid: '54321',
       info: {
         email: Faker::Internet.email,
         name: Faker::Name.first_name

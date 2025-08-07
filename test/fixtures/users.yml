@@ -2,10 +2,10 @@
 
 one:
   name: John
-  email: UserOne@test.com
+  email: userone@test.com
   admin: false
 
 two:
   name: Doe
-  email: UserTwo@test.com
+  email: usertwo@test.com
   admin: true
