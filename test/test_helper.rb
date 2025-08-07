@@ -24,7 +24,7 @@ module ActiveSupport
       Bulletin.find_each do |bulletin|
         next if bulletin.image.attached?
 
-        path = Rails.root.join('test/fixtures/files/music.jpg')
+        path = Rails.root.join('storage/music.jpg')
         bulletin.image.attach(io: File.open(path), filename: 'music.jpg', content_type: 'image/jpg')
       end
     end

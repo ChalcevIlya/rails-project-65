@@ -22,8 +22,9 @@ install:
 	bin/setup
 
 db-prepare:
-	bin/rails db:reset
-	bin/rails db:fixtures:load
+	bin/rails db:drop DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+	bin/rails db:create
+	bin/rails db:migrate
 
 check: test lint
 

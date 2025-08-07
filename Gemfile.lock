@@ -417,6 +417,7 @@ DEPENDENCIES
   rubocop
   rubocop-performance
   rubocop-rails
+  ruby-vips
   selenium-webdriver
   sentry-rails
   sentry-ruby
