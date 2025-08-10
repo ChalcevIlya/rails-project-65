@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    @current_user = User.find_by(id: session[:user_id]) unless defined?(@current_user)
+    @current_user
   end
 
   def user_signed_in?
