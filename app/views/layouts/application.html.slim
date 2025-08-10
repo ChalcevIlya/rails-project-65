@@ -16,6 +16,12 @@ html
         .d-flex.align-items-center
           = link_to t('navigation.title'), root_path, class: 'navbar-brand'
 
+          = link_to url_for(locale: :en), class: 'btn btn-outline-light btn-sm', title: 'English' do
+            'English
+
+          = link_to url_for(locale: :ru), class: 'btn btn-outline-light btn-sm', title: 'Русский' do
+            'Русский
+
         .ms-auto.d-flex.align-items-center.gap-2
           - if user_signed_in?
             span.text-white.me-2 = t('auth.login', name: current_user.name)

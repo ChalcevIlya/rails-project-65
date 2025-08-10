@@ -1,0 +1,154 @@
+ru:
+  confirm: "Вы уверены?"
+  activerecord:
+    models:
+      bulletin: "Объявление"
+      category: "Категория"
+    attributes:
+      category:
+        name: "Название"
+      bulletin:
+        title: "Заголовок"
+        description: "Описание"
+        image: "Изображение"
+        category: "Категория"
+  helpers:
+    submit:
+      category:
+        create: "Создать категорию"
+        update: "Обновить категорию"
+      bulletin:
+        create: "Создать объявление"
+        update: "Обновить объявление"
+  actions:
+    create: "создать"
+    edit: "редактировать"
+    publish: "опубликовать"
+    reject: "отклонить"
+    archive: "отправить в архив"
+    send_to_moderation: "отправить на модерацию"
+    delete: "удалить"
+  auth:
+    logout: "Успешный выход"
+    login: "Привет, %{name}!"
+    access_denied: "Доступ запрещен"
+    require_login: "Вы должны войти в аккаунт!"
+  bulletins:
+    title: "Объявления"
+    notice: "Объявление %{action}"
+    alert: "Невозможно %{action} это объявление"
+    edit: "Редактировать объявление"
+    create: "Создать объявление"
+    current_image: "Текущее изображение"
+    category: "Категория"
+    author: "Автор"
+    actions:
+      created: "создано"
+      updated: "обновлено"
+      published: "опубликовано"
+      rejected: "отклонено"
+      archived: "отправлено в архив"
+      sent_to_moderation: "отправлено на модерацию"
+  categories:
+    title: "Категории"
+    notice: "Категория %{action}"
+    edit: "Редактировать категорию"
+    create: "Создать категорию"
+    new: "Новая категория"
+    actions:
+      created: "создана"
+      updated: "обновлена"
+      deleted: "удалена"
+  navigation:
+    title: "Доска объявлений"
+    profile: "Мои объявлений"
+    new_bulletin: "Новое объявление"
+    admin: "Панель админа"
+    login_github: "Вход через GitHub"
+    logout: "Выход"
+    under_moderation: "На модерации"
+    all_bulletins: "Все объявления"
+    all_categories: "Все категории"
+    back: "Назад"
+  tables:
+    title: "Заголовок"
+    category: "Категория"
+    created: "Создано"
+    actions: "Действия"
+    state: "Статус"
+    time_ago: "%{time} назад"
+    publish: "Опубликовать"
+    reject: "Отклонить"
+    archive: "Архивировать"
+    edit: "Редактировать"
+    delete: "Удалить"
+    send_to_moderation: "Отправить на модерацию"
+    show: "Показать"
+    name: "Название"
+  forms:
+    category_name: "Название категории"
+    choose_category: "Выберите категорию"
+    max_symbols: "Макс. %{count} символов"
+    img_restrictions: "Макс. 5 Mb; Форматы: png, jpg"
+    search_by_title: "Искать по заголовку"
+    search_by_category: "Искать по категории"
+    search: "Поиск"
+    reset: "Сброс"
+  datetime:
+    distance_in_words:
+      half_a_minute: "полминуты"
+      less_than_x_seconds:
+        one:   "меньше секунды"
+        few:   "меньше %{count} секунд"
+        many:  "меньше %{count} секунд"
+        other: "меньше %{count} секунд"
+      x_seconds:
+        one:   "1 секунда"
+        few:   "%{count} секунды"
+        many:  "%{count} секунд"
+        other: "%{count} секунд"
+      less_than_x_minutes:
+        one:   "меньше минуты"
+        few:   "меньше %{count} минут"
+        many:  "меньше %{count} минут"
+        other: "меньше %{count} минут"
+      x_minutes:
+        one:   "1 минута"
+        few:   "%{count} минуты"
+        many:  "%{count} минут"
+        other: "%{count} минут"
+      about_x_hours:
+        one:   "около 1 часа"
+        few:   "около %{count} часов"
+        many:  "около %{count} часов"
+        other: "около %{count} часов"
+      x_days:
+        one:   "1 день"
+        few:   "%{count} дня"
+        many:  "%{count} дней"
+        other: "%{count} дней"
+      about_x_months:
+        one:   "около 1 месяца"
+        few:   "около %{count} месяцев"
+        many:  "около %{count} месяцев"
+        other: "около %{count} месяцев"
+      x_months:
+        one:   "1 месяц"
+        few:   "%{count} месяца"
+        many:  "%{count} месяцев"
+        other: "%{count} месяцев"
+      about_x_years:
+        one:   "около 1 года"
+        few:   "около %{count} лет"
+        many:  "около %{count} лет"
+        other: "около %{count} лет"
+      over_x_years:
+        one:   "больше 1 года"
+        few:   "больше %{count} лет"
+        many:  "больше %{count} лет"
+        other: "больше %{count} лет"
+      almost_x_years:
+        one:   "почти 1 год"
+        few:   "почти %{count} года"
+        many:  "почти %{count} лет"
+        other: "почти %{count} лет"

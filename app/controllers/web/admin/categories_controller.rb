@@ -17,7 +17,7 @@ class Web::Admin::CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to admin_categories_path, notice: I18n.t('categories.notice', action: 'created')
+      redirect_to admin_categories_path, notice: I18n.t('categories.notice', action: I18n.t('categories.actions.created'))
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Web::Admin::CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to admin_categories_path, notice: I18n.t('categories.notice', action: 'updated')
+      redirect_to admin_categories_path, notice: I18n.t('categories.notice', action: I18n.t('categories.actions.updated'))
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class Web::Admin::CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to admin_categories_path, notice: I18n.t('categories.notice', action: 'deleted')
+    redirect_to admin_categories_path, notice: I18n.t('categories.notice', action: I18n.t('categories.actions.deleted'))
   end
 
   private

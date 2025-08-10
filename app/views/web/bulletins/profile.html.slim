@@ -23,11 +23,11 @@
                     = link_to t('tables.edit'), edit_bulletin_path(bulletin), class: 'btn btn-sm btn-warning me-2'
                     - if bulletin.may_send_to_moderation?
                           = link_to t('tables.send_to_moderation'), send_to_moderation_bulletin_path(bulletin),
-                            data: { turbo_method: :patch, turbo_confirm: 'Cofirm sending to moderation?' },
+                            data: { turbo_method: :patch, turbo_confirm: t('confirm') },
                             class: 'btn btn-sm btn-info me-2'
                     - if bulletin.may_archive?
                           = link_to t('tables.archive'), archive_bulletin_path(bulletin),
-                            data: { turbo_method: :patch, turbo_confirm: 'Cofirm archiving?' },
+                            data: { turbo_method: :patch, turbo_confirm: t('confirm') },
                             class: 'btn btn-sm btn-danger me-2'
 
         .mt-3.p-0

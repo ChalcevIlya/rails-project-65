@@ -11,20 +11,20 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'admin should get index' do
     sign_in(@admin)
-    get admin_categories_path
+    get admin_categories_path(locale: I18n.locale)
     assert_response :success
   end
 
   test 'non-admin should not get index' do
     sign_in(@non_admin)
     get admin_categories_path
-    assert_redirected_to root_path
+    assert_redirected_to root_path(locale: I18n.locale)
     assert_equal I18n.t('auth.access_denied'), flash[:alert]
   end
 
   test 'admin should get new' do
     sign_in(@admin)
-    get new_admin_category_path
+    get new_admin_category_path(locale: I18n.locale)
     assert_response :success
   end
 
@@ -33,7 +33,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Category.count') do
       post admin_categories_path, params: { category: { name: 'Test Category' } }
     end
-    assert_redirected_to admin_categories_path
+    assert_redirected_to admin_categories_path(locale: I18n.locale)
   end
 
   test 'admin should not create category with invalid data' do
@@ -53,7 +53,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   test 'admin should update category' do
     sign_in(@admin)
     patch admin_category_path(@category), params: { category: { name: 'UpdatedName' } }
-    assert_redirected_to admin_categories_path
+    assert_redirected_to admin_categories_path(locale: I18n.locale)
     @category.reload
     assert_equal 'UpdatedName', @category.name
   end
@@ -71,28 +71,28 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Category.count', -1) do
       delete admin_category_path(@category)
     end
-    assert_redirected_to admin_categories_path
+    assert_redirected_to admin_categories_path(locale: I18n.locale)
   end
 
   test 'non-admin should not access category routes' do
     sign_in(@non_admin)
 
     get admin_categories_path
-    assert_redirected_to root_path
+    assert_redirected_to root_path(locale: I18n.locale)
 
     get new_admin_category_path
-    assert_redirected_to root_path
+    assert_redirected_to root_path(locale: I18n.locale)
 
     post admin_categories_path, params: { category: { name: 'Nope' } }
-    assert_redirected_to root_path
+    assert_redirected_to root_path(locale: I18n.locale)
 
     get edit_admin_category_path(@category)
-    assert_redirected_to root_path
+    assert_redirected_to root_path(locale: I18n.locale)
 
     patch admin_category_path(@category), params: { category: { name: 'Nope' } }
-    assert_redirected_to root_path
+    assert_redirected_to root_path(locale: I18n.locale)
 
     delete admin_category_path(@category)
-    assert_redirected_to root_path
+    assert_redirected_to root_path(locale: I18n.locale)
   end
 end

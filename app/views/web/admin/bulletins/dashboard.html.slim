@@ -20,13 +20,13 @@
                   td = t('tables.time_ago', time: time_ago_in_words(bulletin.created_at))
                   td
                     = link_to t('tables.publish'), publish_admin_bulletin_path(bulletin),
-                      data: { turbo_method: :patch, turbo_confirm: 'Cofirm publishing?' },
+                      data: { turbo_method: :patch, turbo_confirm: t('confirm') },
                       class: 'btn btn-sm btn-outline-success me-2'
                     = link_to t('tables.reject'), reject_admin_bulletin_path(bulletin),
-                      data: { turbo_method: :patch, turbo_confirm: 'Cofirm rejecting?' },
+                      data: { turbo_method: :patch, turbo_confirm: t('confirm') },
                       class: 'btn btn-sm btn-outline-danger me-2'
                     = link_to t('tables.archive'), archive_admin_bulletin_path(bulletin),
-                      data: { turbo_method: :patch, turbo_confirm: 'Cofirm archiving?' },
+                      data: { turbo_method: :patch, turbo_confirm: t('confirm') },
                       class: 'btn btn-sm btn-danger me-2'
 
           .mt-3

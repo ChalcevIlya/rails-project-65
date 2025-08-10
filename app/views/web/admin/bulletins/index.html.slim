@@ -25,7 +25,7 @@
                     = link_to t('tables.show'), bulletin_path(bulletin), class: 'btn btn-sm btn-primary me-2'
                     - if bulletin.may_archive?
                       = link_to t('tables.archive'), archive_admin_bulletin_path(bulletin),
-                        data: { turbo_method: :patch, turbo_confirm: 'Cofirm archiving?' },
+                        data: { turbo_method: :patch, turbo_confirm: t('confirm') },
                         class: 'btn btn-sm btn-danger me-2'
 
           .mt-3

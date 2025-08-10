@@ -31,7 +31,7 @@ class Web::BulletinsController < ApplicationController
   def create
     @bulletin = current_user.bulletins.build(bulletin_params)
     if @bulletin.save
-      redirect_to bulletin_path(@bulletin), notice: I18n.t('bulletins.notice', action: 'created')
+      redirect_to bulletin_path(@bulletin), notice: I18n.t('bulletins.notice', action: I18n.t('bulletins.actions.created'))
     else
       render :new, status: :unprocessable_entity
     end
@@ -39,7 +39,7 @@ class Web::BulletinsController < ApplicationController
 
   def update
     if @bulletin.update(bulletin_params)
-      redirect_to bulletin_path(@bulletin), notice: I18n.t('bulletins.notice', action: 'updated')
+      redirect_to bulletin_path(@bulletin), notice: I18n.t('bulletins.notice', action: I18n.t('bulletins.actions.updated'))
     else
       render :edit, status: :unprocessable_entity
     end
@@ -48,18 +48,18 @@ class Web::BulletinsController < ApplicationController
   def archive
     if @bulletin.may_archive?
       @bulletin.archive!
-      redirect_back_or_to profile_path, notice: I18n.t('bulletins.notice', action: 'archived')
+      redirect_back_or_to profile_path, notice: I18n.t('bulletins.notice', action: I18n.t('bulletins.actions.archived'))
     else
-      redirect_back_or_to profile_path, alert: I18n.t('bulletins.alert', action: 'archive')
+      redirect_back_or_to profile_path, alert: I18n.t('bulletins.alert', action: I18n.t('actions.archive'))
     end
   end
 
   def send_to_moderation
     if @bulletin.may_send_to_moderation?
       @bulletin.send_to_moderation!
-      redirect_back_or_to profile_path, notice: I18n.t('bulletins.notice', action: 'sent to moderation')
+      redirect_back_or_to profile_path, notice: I18n.t('bulletins.notice', action: I18n.t('bulletins.actions.sent_to_moderation'))
     else
-      redirect_back_or_to profile_path, alert: I18n.t('bulletins.alert', action: 'send to moderation')
+      redirect_back_or_to profile_path, alert: I18n.t('bulletins.alert', action: I18n.t('actions.send_to_moderation'))
     end
   end
 

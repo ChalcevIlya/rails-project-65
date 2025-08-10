@@ -2,6 +2,6 @@
   = f.input :title, required: true, input_html: { maxlength: 50 }, hint: t('forms.max_symbols', count: 50)
   = f.input :description, as: :text, required: true, input_html: { rows: 5, maxlength: 1000 }, hint: t('forms.max_symbols', count: 1000)
   = f.input :image, as: :file, hint: t('forms.img_restrictions')
-  = f.association :category, prompt: t('forms.choose', item: 'category'), required: true
+  = f.association :category, prompt: t('forms.choose_category'), required: true
 
   = f.button :submit, class: 'btn btn-primary mt-3'

@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  before_action :set_locale
+
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
@@ -27,6 +29,14 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
+  end
 
   def authorize_admin!
     authorize :admin, :access?

@@ -28,7 +28,15 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  confirm: "Are you sure?"
+  actions:
+    create: "create"
+    edit: "edit"
+    publish: "publish"
+    reject: "reject"
+    archive: "archive"
+    send_to_moderation: "send to moderation"
+    delete: "delete"
   auth:
     logout: "Logout success"
     login: "Hello, %{name}!"
@@ -43,12 +51,23 @@ en:
     current_image: "Current image"
     category: "Category"
     author: "Author"
+    actions:
+      created: "created"
+      updated: "updated"
+      published: "published"
+      rejected: "rejected"
+      archived: "archived"
+      sent_to_moderation: "sent to moderation"
   categories:
     title: "Categories"
     notice: "Category %{action}"
     edit: "Edit category"
     create: "Create category"
     new: "New category"
+    actions:
+      created: "created"
+      updated: "updated"
+      deleted: "deleted"
   navigation:
     title: "Bulletin Board"
     profile: "My bulletins"
@@ -62,6 +81,7 @@ en:
     back: "Back"
   tables:
     title: "Title"
+    category: "Category"
     created: "Created"
     actions: "Actions"
     state: "State"
@@ -76,9 +96,10 @@ en:
     name: "Name"
   forms:
     category_name: "Category Name"
-    choose: "Choose %{item}"
+    choose_category: "Choose category"
     max_symbols: "Max %{count} symbols"
     img_restrictions: "Max 5 Mb; Formats: png, jpg"
-    search_by: "Search by %{item}"
+    search_by_title: "Search by title"
+    search_by_category: "Search by category"
     search: "Search"
     reset: "Reset"

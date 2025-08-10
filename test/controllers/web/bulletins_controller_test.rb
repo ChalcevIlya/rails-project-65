@@ -44,7 +44,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     end
 
     bulletin = Bulletin.last
-    assert_redirected_to bulletin_path(bulletin)
+    assert_redirected_to bulletin_path(bulletin, locale: I18n.locale)
     assert_equal @user.id, bulletin.user_id
   end
 
@@ -57,7 +57,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     patch bulletin_path(@bulletin), params: {
       bulletin: { title: 'Updated Title' }
     }
-    assert_redirected_to bulletin_path(@bulletin)
+    assert_redirected_to bulletin_path(@bulletin, locale: I18n.locale)
     @bulletin.reload
     assert_equal 'Updated Title', @bulletin.title
   end
@@ -65,7 +65,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should archive bulletin if allowed' do
     @bulletin.update!(state: :published)
     patch archive_bulletin_path(@bulletin)
-    assert_redirected_to profile_path
+    assert_redirected_to profile_path(locale: I18n.locale)
     @bulletin.reload
     assert_equal 'archived', @bulletin.state
   end
@@ -73,7 +73,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should send bulletin to moderation if allowed' do
     @bulletin.update!(state: :draft)
     patch send_to_moderation_bulletin_path(@bulletin)
-    assert_redirected_to profile_path
+    assert_redirected_to profile_path(locale: I18n.locale)
     @bulletin.reload
     assert_equal 'under_moderation', @bulletin.state
   end
@@ -81,7 +81,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should not send bulletin to moderation if invalid state' do
     @bulletin.update!(state: :published)
     patch send_to_moderation_bulletin_path(@bulletin)
-    assert_redirected_to profile_path
+    assert_redirected_to profile_path(locale: I18n.locale)
     @bulletin.reload
     assert_equal 'published', @bulletin.state
   end
@@ -89,14 +89,14 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should not allow edit of someone else’s bulletin' do
     other_user_bulletin = bulletins(:two)
     get edit_bulletin_path(other_user_bulletin)
-    assert_redirected_to root_path
+    assert_redirected_to root_path(locale: I18n.locale)
     assert_equal I18n.t('auth.access_denied'), flash[:alert]
   end
 
   test 'should not allow archive of someone else’s bulletin' do
     other_user_bulletin = bulletins(:two)
     patch archive_bulletin_path(other_user_bulletin)
-    assert_redirected_to root_path
+    assert_redirected_to root_path(locale: I18n.locale)
     assert_equal I18n.t('auth.access_denied'), flash[:alert]
   end
 end
