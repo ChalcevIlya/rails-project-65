@@ -14,7 +14,7 @@
       = " • #{t('bulletins.author')}: "
       = @bulletin.user.name
       = " • #{t('tables.created')}: "
-      = t('tables.time_ago', time: time_ago_in_words(@bulletin.created_at))
+      = t('datetime.relative.past', time: time_ago_in_words(@bulletin.created_at))
 
     hr
 

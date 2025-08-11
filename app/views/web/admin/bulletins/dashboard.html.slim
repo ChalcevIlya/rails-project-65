@@ -17,7 +17,7 @@
                 tr
                   td = link_to bulletin.title, bulletin_path(bulletin),
                     class: 'link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover'
-                  td = t('tables.time_ago', time: time_ago_in_words(bulletin.created_at))
+                  td = t('datetime.relative.past', time: time_ago_in_words(bulletin.created_at))
                   td
                     = link_to t('tables.publish'), publish_admin_bulletin_path(bulletin),
                       data: { turbo_method: :patch, turbo_confirm: t('confirm') },

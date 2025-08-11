@@ -18,6 +18,6 @@
               = link_to bulletin.title, bulletin_path(bulletin), class: 'text-decoration-none text-dark'
 
             p.text-muted.mb-0
-              = t('tables.time_ago', time: time_ago_in_words(bulletin.created_at))
+              = t('datetime.relative.past', time: time_ago_in_words(bulletin.created_at))
   .mt-3
     = paginate @bulletins

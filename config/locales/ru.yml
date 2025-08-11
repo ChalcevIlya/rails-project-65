@@ -1,4 +1,10 @@
 ru:
+  views:
+      pagination:
+        first: "Первая"
+        last: "Последняя"
+        next: "След."
+        previous: "Пред."
   confirm: "Вы уверены?"
   activerecord:
     models:
@@ -113,7 +119,7 @@ ru:
         many:  "меньше %{count} минут"
         other: "меньше %{count} минут"
       x_minutes:
-        one:   "1 минута"
+        one:   "1 минуту"
         few:   "%{count} минуты"
         many:  "%{count} минут"
         other: "%{count} минут"
@@ -152,3 +158,13 @@ ru:
         few:   "почти %{count} года"
         many:  "почти %{count} лет"
         other: "почти %{count} лет"
+    prompts:
+      year:   "Год"
+      month:  "Месяц"
+      day:    "День"
+      hour:   "Час"
+      minute: "Минута"
+      second: "Секунда"
+    relative:
+      future: "через %{time}"
+      past: "%{time} назад"
