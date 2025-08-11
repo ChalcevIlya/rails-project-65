@@ -67,7 +67,7 @@ ru:
       deleted: "удалена"
   navigation:
     title: "Доска объявлений"
-    profile: "Мои объявлений"
+    profile: "Мои объявления"
     new_bulletin: "Новое объявление"
     admin: "Панель админа"
     login_github: "Вход через GitHub"

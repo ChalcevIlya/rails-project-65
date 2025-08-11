@@ -39,13 +39,21 @@ https://rails-project-65-lg04.onrender.com
 ```bash
    make setup
 ```
-4. Запустите приложение:
+
+4. Установите переменные окружения:
+
+```bash
+   GITHUB_CLIENT_ID=
+   GITHUB_CLIENT_SECRET=
+```
+
+5. Запустите приложение:
 
 ```bash
    make start
 ```
-5. Откройте в браузере:
+6. Откройте в браузере:
 
 ```bash
-   http://0.0.0.0:3000
+   http://localhost:3000
 ```
