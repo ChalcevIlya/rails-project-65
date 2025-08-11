@@ -3,3 +3,8 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :github, ENV.fetch('GITHUB_CLIENT_ID', nil), ENV.fetch('GITHUB_CLIENT_SECRET', nil), scope: 'user'
 end
+
+OmniAuth.config.full_host = lambda do |env|
+  request = Rack::Request.new(env)
+  "#{request.scheme}://#{request.host_with_port}"
+end
