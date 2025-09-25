@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-class Web::Admin::CategoriesController < ApplicationController
-  before_action :authorize_admin!
-  before_action :set_category, only: %i[edit update destroy]
-
+class Web::Admin::CategoriesController < Web::Admin::ApplicationController
   def index
     @categories = Category.all.page(params[:page]).per(10)
   end
@@ -12,7 +9,9 @@ class Web::Admin::CategoriesController < ApplicationController
     @category = Category.new
   end
 
-  def edit; end
+  def edit
+    @category = Category.find(params[:id])
+  end
 
   def create
     @category = Category.new(category_params)
@@ -24,6 +23,7 @@ class Web::Admin::CategoriesController < ApplicationController
   end
 
   def update
+    @category = Category.find(params[:id])
     if @category.update(category_params)
       redirect_to admin_categories_path, notice: I18n.t('categories.notice', action: I18n.t('categories.actions.updated'))
     else
@@ -32,15 +32,16 @@ class Web::Admin::CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
-    redirect_to admin_categories_path, notice: I18n.t('categories.notice', action: I18n.t('categories.actions.deleted'))
+    @category = Category.find(params[:id])
+    if @category.bulletins.any?
+      redirect_to admin_categories_path, alert: I18n.t('categories.alert_not_deleted')
+    else
+      @category.destroy
+      redirect_to admin_categories_path, notice: I18n.t('categories.notice', action: I18n.t('categories.actions.deleted'))
+    end
   end
 
   private
-
-  def set_category
-    @category = Category.find(params[:id])
-  end
 
   def category_params
     params.require(:category).permit(:name)

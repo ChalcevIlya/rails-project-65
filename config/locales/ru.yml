@@ -1,4 +1,11 @@
 ru:
+  aasm:
+    state:
+      draft: "Черновик"
+      published: "Опубликовано"
+      under_moderation: "На модерации"
+      rejected: "Отклонено"
+      archived: "В архиве"
   views:
       pagination:
         first: "Первая"
@@ -48,6 +55,7 @@ ru:
     current_image: "Текущее изображение"
     category: "Категория"
     author: "Автор"
+    state: "Статус"
     actions:
       created: "создано"
       updated: "обновлено"
@@ -58,6 +66,7 @@ ru:
   categories:
     title: "Категории"
     notice: "Категория %{action}"
+    alert_not_deleted: "Нельзя удалить категорию с объявлениями"
     edit: "Редактировать категорию"
     create: "Создать категорию"
     new: "Новая категория"
@@ -97,6 +106,7 @@ ru:
     max_symbols: "Макс. %{count} символов"
     img_restrictions: "Макс. 5 Mb; Форматы: png, jpg"
     search_by_title: "Искать по заголовку"
+    search_by_state: "Искать по статусу"
     search_by_category: "Искать по категории"
     search: "Поиск"
     reset: "Сброс"

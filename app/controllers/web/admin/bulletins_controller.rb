@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
-class Web::Admin::BulletinsController < ApplicationController
-  before_action :authorize_admin!
-  before_action :set_bulletin, only: %i[publish reject archive]
-
+class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   def index
     @categories = Category.all
+    @states = Bulletin.aasm.states.map do |s|
+      [I18n.t("aasm.state.#{s.name}"), s.name]
+    end
     @q = Bulletin.ransack(params[:q])
-    @bulletins = @q.result.includes(:category, :user).order(created_at: :desc).page(params[:page]).per(10)
+    @bulletins = @q.result.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def dashboard
-    @bulletins = Bulletin.includes(:category, :user).where(state: :under_moderation).page(params[:page]).per(10)
+    @bulletins = Bulletin.where(state: :under_moderation).page(params[:page]).per(10)
   end
 
   def publish
+    @bulletin = Bulletin.find(params[:id])
     if @bulletin.may_publish?
       @bulletin.publish!
       redirect_back_or_to admin_root_path, notice: I18n.t('bulletins.notice', action: I18n.t('bulletins.actions.published'))
@@ -24,6 +25,7 @@ class Web::Admin::BulletinsController < ApplicationController
   end
 
   def reject
+    @bulletin = Bulletin.find(params[:id])
     if @bulletin.may_reject?
       @bulletin.reject!
       redirect_back_or_to admin_root_path, notice: I18n.t('bulletins.notice', action: I18n.t('bulletins.actions.rejected'))
@@ -33,17 +35,12 @@ class Web::Admin::BulletinsController < ApplicationController
   end
 
   def archive
+    @bulletin = Bulletin.find(params[:id])
     if @bulletin.may_archive?
       @bulletin.archive!
       redirect_back_or_to admin_root_path, notice: I18n.t('bulletins.notice', action: I18n.t('bulletins.actions.archived'))
     else
       redirect_back_or_to admin_root_path, alert: I18n.t('bulletins.alert', action: I18n.t('actions.archive'))
     end
-  end
-
-  private
-
-  def set_bulletin
-    @bulletin = Bulletin.find(params[:id])
   end
 end

@@ -6,7 +6,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users(:two)
     @non_admin = users(:one)
-    @category = categories(:one)
+    @category = categories(:three)
   end
 
   test 'admin should get index' do

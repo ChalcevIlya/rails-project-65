@@ -1,23 +1,18 @@
 # frozen_string_literal: true
 
-class Web::BulletinsController < ApplicationController
+class Web::BulletinsController < Web::ApplicationController
   before_action :require_login, only: %i[new create edit update archive send_to_moderation]
-  before_action :set_bulletin, only: %i[show edit update archive send_to_moderation]
-  before_action :check_author, only: %i[edit update archive send_to_moderation]
 
   def index
     @categories = Category.all
     @q = Bulletin.ransack(params[:q])
-    @bulletins = @q.result.where(state: :published).includes(:category, :user).order(created_at: :desc).page(params[:page]).per(9)
+    @bulletins = @q.result.where(state: :published).order(created_at: :desc).page(params[:page]).per(9)
   end
 
-  def profile
-    @categories = Category.all
-    @q = Bulletin.ransack(params[:q])
-    @bulletins = @q.result.where(user: current_user).includes(:category, :user).order(created_at: :desc).page(params[:page]).per(10)
+  def show
+    @bulletin = Bulletin.find(params[:id])
+    authorize @bulletin
   end
-
-  def show; end
 
   def new
     @bulletin = Bulletin.new
@@ -25,7 +20,8 @@ class Web::BulletinsController < ApplicationController
   end
 
   def edit
-    @categories = Category.all
+    @bulletin = Bulletin.find(params[:id])
+    authorize @bulletin, :author?
   end
 
   def create
@@ -38,6 +34,8 @@ class Web::BulletinsController < ApplicationController
   end
 
   def update
+    @bulletin = Bulletin.find(params[:id])
+    authorize @bulletin, :author?
     if @bulletin.update(bulletin_params)
       redirect_to bulletin_path(@bulletin), notice: I18n.t('bulletins.notice', action: I18n.t('bulletins.actions.updated'))
     else
@@ -46,6 +44,8 @@ class Web::BulletinsController < ApplicationController
   end
 
   def archive
+    @bulletin = Bulletin.find(params[:id])
+    authorize @bulletin, :author?
     if @bulletin.may_archive?
       @bulletin.archive!
       redirect_back_or_to profile_path, notice: I18n.t('bulletins.notice', action: I18n.t('bulletins.actions.archived'))
@@ -55,6 +55,8 @@ class Web::BulletinsController < ApplicationController
   end
 
   def send_to_moderation
+    @bulletin = Bulletin.find(params[:id])
+    authorize @bulletin, :author?
     if @bulletin.may_send_to_moderation?
       @bulletin.send_to_moderation!
       redirect_back_or_to profile_path, notice: I18n.t('bulletins.notice', action: I18n.t('bulletins.actions.sent_to_moderation'))
@@ -64,14 +66,6 @@ class Web::BulletinsController < ApplicationController
   end
 
   private
-
-  def check_author
-    redirect_to root_path, alert: I18n.t('auth.access_denied') unless @bulletin.user == current_user
-  end
-
-  def set_bulletin
-    @bulletin = Bulletin.find(params[:id])
-  end
 
   def bulletin_params
     params.require(:bulletin).permit(:title, :description, :image, :category_id)

@@ -4,4 +4,4 @@ h1.mb-3 = t('bulletins.edit')
   = image_tag @bulletin.image,
         class: 'card-img mb-3', alt: @bulletin.title,
         style: 'object-fit: cover; width: 100%; max-width: 600px; height: 300px;'
-= render 'form'
+= render 'form', bulletin: @bulletin

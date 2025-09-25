@@ -26,4 +26,16 @@ class Web::AuthControllerTest < ActionDispatch::IntegrationTest
     assert user
     assert signed_in?
   end
+
+  test 'logout' do
+    user = users(:one)
+    sign_in user
+
+    delete logout_path
+    assert_redirected_to root_path(locale: I18n.locale)
+
+    follow_redirect!
+    assert_equal I18n.t('auth.logout'), flash[:notice]
+    assert_not signed_in?
+  end
 end

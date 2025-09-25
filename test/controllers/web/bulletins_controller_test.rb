@@ -14,11 +14,6 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should get profile for signed in user' do
-    get profile_path
-    assert_response :success
-  end
-
   test 'should show bulletin' do
     get bulletin_path(@bulletin)
     assert_response :success

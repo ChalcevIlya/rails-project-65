@@ -1,4 +1,5 @@
 = simple_form_for @q, url: request.path, method: :get do |f|
+  = hidden_field_tag :locale, I18n.locale
   .row.mt-2.justify-content-between.align-items-end.mb-4.w-100
     .col-5.mb-0
       = f.input :title_cont, placeholder: t('forms.search_by_title'), label: t('tables.title'), required: false, wrapper: false

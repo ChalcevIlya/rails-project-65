@@ -1,4 +1,4 @@
-= simple_form_for @bulletin, html: { multipart: true } do |f|
+= simple_form_for bulletin, html: { multipart: true } do |f|
   = f.input :title, required: true, input_html: { maxlength: 50 }, hint: t('forms.max_symbols', count: 50)
   = f.input :description, as: :text, required: true, input_html: { rows: 5, maxlength: 1000 }, hint: t('forms.max_symbols', count: 1000)
   = f.input :image, as: :file, hint: t('forms.img_restrictions')

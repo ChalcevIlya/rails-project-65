@@ -7,8 +7,10 @@ Rails.application.routes.draw do
     delete 'logout', to: 'auth#logout', as: :logout
 
     root to: 'bulletins#index'
-    get 'profile', to: 'bulletins#profile', as: :profile
-    resources :bulletins do
+
+    resource :profile, only: :show
+
+    resources :bulletins, except: :destroy do
       member do
         patch :send_to_moderation
         patch :archive
@@ -17,14 +19,14 @@ Rails.application.routes.draw do
 
     namespace :admin do
       root to: 'bulletins#dashboard'
-      resources :bulletins do
+      resources :bulletins, only: %i[index] do
         member do
           patch :publish
           patch :reject
           patch :archive
         end
       end
-      resources :categories
+      resources :categories, except: :show
     end
   end
 end

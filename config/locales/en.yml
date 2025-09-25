@@ -28,6 +28,13 @@
 #       enabled: "ON"
 
 en:
+  aasm:
+    state:
+      draft: "Draft"
+      published: "Published"
+      under_moderation: "Under moderation"
+      rejected: "Rejected"
+      archived: "Archived"
   views:
     pagination:
       first: "First"
@@ -57,6 +64,7 @@ en:
     current_image: "Current image"
     category: "Category"
     author: "Author"
+    state: "State"
     actions:
       created: "created"
       updated: "updated"
@@ -67,6 +75,7 @@ en:
   categories:
     title: "Categories"
     notice: "Category %{action}"
+    alert_not_deleted: "Category with bulletins cannot be deleted"
     edit: "Edit category"
     create: "Create category"
     new: "New category"
@@ -106,6 +115,7 @@ en:
     max_symbols: "Max %{count} symbols"
     img_restrictions: "Max 5 Mb; Formats: png, jpg"
     search_by_title: "Search by title"
+    search_by_state: "Search by state"
     search_by_category: "Search by category"
     search: "Search"
     reset: "Reset"
