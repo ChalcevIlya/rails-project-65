@@ -9,13 +9,7 @@ class BulletinPolicy
   end
 
   def show?
-    if bulletin.published?
-      true
-    elsif current_user
-      current_user.admin? || current_user == bulletin.user
-    else
-      false
-    end
+    bulletin.published? || author? || current_user&.admin?
   end
 
   def author?

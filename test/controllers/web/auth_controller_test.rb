@@ -28,7 +28,7 @@ class Web::AuthControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'logout' do
-    user = users(:one)
+    user = users(:non_admin)
     sign_in user
 
     delete logout_path

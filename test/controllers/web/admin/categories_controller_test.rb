@@ -4,22 +4,15 @@ require 'test_helper'
 
 class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @admin = users(:two)
-    @non_admin = users(:one)
-    @category = categories(:three)
+    @admin = users(:admin)
+    @non_admin = users(:non_admin)
+    @category = categories(:food)
   end
 
   test 'admin should get index' do
     sign_in(@admin)
     get admin_categories_path(locale: I18n.locale)
     assert_response :success
-  end
-
-  test 'non-admin should not get index' do
-    sign_in(@non_admin)
-    get admin_categories_path
-    assert_redirected_to root_path(locale: I18n.locale)
-    assert_equal I18n.t('auth.access_denied'), flash[:alert]
   end
 
   test 'admin should get new' do
@@ -30,9 +23,11 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test 'admin should create category' do
     sign_in(@admin)
+    name = 'Test Category'
     assert_difference('Category.count') do
-      post admin_categories_path, params: { category: { name: 'Test Category' } }
+      post admin_categories_path, params: { category: { name: name } }
     end
+    assert_not_nil Category.find_by(name: name)
     assert_redirected_to admin_categories_path(locale: I18n.locale)
   end
 
@@ -79,6 +74,7 @@ class Web::Admin::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
     get admin_categories_path
     assert_redirected_to root_path(locale: I18n.locale)
+    assert_equal I18n.t('auth.access_denied'), flash[:alert]
 
     get new_admin_category_path
     assert_redirected_to root_path(locale: I18n.locale)

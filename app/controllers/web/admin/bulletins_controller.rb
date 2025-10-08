@@ -2,16 +2,12 @@
 
 class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   def index
-    @categories = Category.all
-    @states = Bulletin.aasm.states.map do |s|
-      [I18n.t("aasm.state.#{s.name}"), s.name]
-    end
     @q = Bulletin.ransack(params[:q])
     @bulletins = @q.result.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def dashboard
-    @bulletins = Bulletin.where(state: :under_moderation).page(params[:page]).per(10)
+    @bulletins = Bulletin.under_moderation.page(params[:page]).per(10)
   end
 
   def publish

@@ -1,0 +1,3 @@
+draft_image_blob: <%= ActiveStorage::FixtureSet.blob filename: "music.jpg", service_name: "test_fixtures" %>
+
+under_moderation_image_blob: <%= ActiveStorage::FixtureSet.blob filename: "books.jpg", service_name: "test_fixtures" %>

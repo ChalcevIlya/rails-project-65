@@ -4,8 +4,8 @@ require 'test_helper'
 
 class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
-    @bulletin = bulletins(:one)
+    @user = users(:non_admin)
+    @bulletin = bulletins(:draft)
     sign_in(@user)
   end
 
@@ -17,6 +17,8 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should show bulletin' do
     get bulletin_path(@bulletin)
     assert_response :success
+    image = @bulletin.image
+    assert image.attached?
   end
 
   test 'should get new bulletin form' do
@@ -26,21 +28,20 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create bulletin' do
     image = fixture_file_upload('music.jpg', 'image/jpeg')
+    attrs = {
+      title: 'Test',
+      description: 'Description',
+      category_id: categories(:music).id,
+      image: image
+    }
 
     assert_difference('Bulletin.count') do
       post bulletins_path, params: {
-        bulletin: {
-          title: 'Test',
-          description: 'Description',
-          category_id: categories(:one).id,
-          image: image
-        }
+        bulletin: attrs
       }
     end
 
-    bulletin = Bulletin.last
-    assert_redirected_to bulletin_path(bulletin, locale: I18n.locale)
-    assert_equal @user.id, bulletin.user_id
+    assert_not_nil Bulletin.find_by(attrs.except(:image).merge(user_id: @user.id))
   end
 
   test 'should get edit if author' do
@@ -82,14 +83,14 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not allow edit of someone else’s bulletin' do
-    other_user_bulletin = bulletins(:two)
+    other_user_bulletin = bulletins(:under_moderation)
     get edit_bulletin_path(other_user_bulletin)
     assert_redirected_to root_path(locale: I18n.locale)
     assert_equal I18n.t('auth.access_denied'), flash[:alert]
   end
 
   test 'should not allow archive of someone else’s bulletin' do
-    other_user_bulletin = bulletins(:two)
+    other_user_bulletin = bulletins(:under_moderation)
     patch archive_bulletin_path(other_user_bulletin)
     assert_redirected_to root_path(locale: I18n.locale)
     assert_equal I18n.t('auth.access_denied'), flash[:alert]

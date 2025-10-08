@@ -1,10 +1,10 @@
-= simple_form_for @q, url: request.path, method: :get do |f|
+= simple_form_for q, url: request.path, method: :get do |f|
   = hidden_field_tag :locale, I18n.locale
   .row.mt-2.justify-content-between.align-items-end.mb-4.w-100
     .col-5.mb-0
       = f.input :title_cont, placeholder: t('forms.search_by_title'), label: t('tables.title'), required: false, wrapper: false
     .col-4.mb-0
-      = f.input :category_id_eq, as: :select, collection: @categories.pluck(:name, :id),
+      = f.input :category_id_eq, as: :select, collection: categories.pluck(:name, :id),
         prompt: t('forms.search_by_category'),
         label: t('tables.category'),
         required: false,

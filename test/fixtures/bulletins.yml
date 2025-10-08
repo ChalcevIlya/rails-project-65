@@ -1,14 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-one:
+draft:
   title: <%= Faker::Music.band %>
   description: <%= Faker::Music.album %>
-  category: one
-  user: one
+  category: music
+  user: non_admin
   state: draft
 
-two:
+under_moderation:
   title: <%= Faker::Book.title %>
   description: <%= Faker::Book.genre %>
-  category: two
-  user: two
+  category: books
+  user: admin
   state: under_moderation

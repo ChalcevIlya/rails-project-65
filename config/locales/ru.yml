@@ -1,11 +1,4 @@
 ru:
-  aasm:
-    state:
-      draft: "Черновик"
-      published: "Опубликовано"
-      under_moderation: "На модерации"
-      rejected: "Отклонено"
-      archived: "В архиве"
   views:
       pagination:
         first: "Первая"
@@ -25,6 +18,11 @@ ru:
         description: "Описание"
         image: "Изображение"
         category: "Категория"
+        state/under_moderation: "На модерации"
+        state/rejected: "Отклонено"
+        state/draft: "Черновик"
+        state/published: "Опубликован"
+        state/archived: "В архиве"
   helpers:
     submit:
       category:

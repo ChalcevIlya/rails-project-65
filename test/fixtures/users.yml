@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+non_admin:
   name: John
   email: userone@test.com
   admin: false
 
-two:
+admin:
   name: Doe
   email: usertwo@test.com
   admin: true

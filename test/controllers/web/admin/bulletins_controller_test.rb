@@ -4,8 +4,8 @@ require 'test_helper'
 
 class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @admin = users(:two)
-    @bulletin_under_moderation = bulletins(:two)
+    @admin = users(:admin)
+    @bulletin_under_moderation = bulletins(:under_moderation)
     sign_in(@admin)
   end
 

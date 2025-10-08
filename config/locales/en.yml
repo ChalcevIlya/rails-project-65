@@ -28,13 +28,14 @@
 #       enabled: "ON"
 
 en:
-  aasm:
-    state:
-      draft: "Draft"
-      published: "Published"
-      under_moderation: "Under moderation"
-      rejected: "Rejected"
-      archived: "Archived"
+  activerecord:
+    attributes:
+      bulletin:
+        state/under_moderation: Under moderation
+        state/rejected: Rejected
+        state/draft: Draft
+        state/published: Published
+        state/archived: Archived
   views:
     pagination:
       first: "First"

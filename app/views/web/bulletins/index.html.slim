@@ -1,7 +1,7 @@
 .container
   h1.mb-4 = t('bulletins.title')
 
-  = render 'web/shared/search_form_with_category'
+  = render 'web/shared/search_form_with_category', categories: @categories, q: @q
 
   .row.row-cols-1.row-cols-md-2.row-cols-lg-3.g-4
     - @bulletins.each do |bulletin|

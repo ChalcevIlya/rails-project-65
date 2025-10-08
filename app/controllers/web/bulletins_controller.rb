@@ -6,7 +6,7 @@ class Web::BulletinsController < Web::ApplicationController
   def index
     @categories = Category.all
     @q = Bulletin.ransack(params[:q])
-    @bulletins = @q.result.where(state: :published).order(created_at: :desc).page(params[:page]).per(9)
+    @bulletins = @q.result.published.order(created_at: :desc).page(params[:page]).per(9)
   end
 
   def show
@@ -16,7 +16,6 @@ class Web::BulletinsController < Web::ApplicationController
 
   def new
     @bulletin = Bulletin.new
-    @categories = Category.all
   end
 
   def edit

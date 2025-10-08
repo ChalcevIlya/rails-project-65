@@ -13,21 +13,6 @@ module ActiveSupport
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
-
-    setup do
-      attach_fixture_images
-    end
-
-    private
-
-    def attach_fixture_images
-      Bulletin.find_each do |bulletin|
-        next if bulletin.image.attached?
-
-        path = Rails.root.join('test/fixtures/files/music.jpg')
-        bulletin.image.attach(io: File.open(path), filename: 'music.jpg', content_type: 'image/jpg')
-      end
-    end
   end
 end
 
