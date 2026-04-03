@@ -33,7 +33,6 @@ class Web::ApplicationController < ApplicationController
   private
 
   def set_locale
-    x = 1
     I18n.locale = params[:locale] || I18n.default_locale
   end
 
